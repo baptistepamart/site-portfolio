@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Cybersécurité</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background: #0a0e27;
+            color: #00ff41;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            border-bottom: 2px solid #00ff41;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: #00ff41;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            padding: 0.5rem 1rem;
+            border: 1px solid transparent;
+        }
+
+        nav a:hover {
+            border: 1px solid #00ff41;
+            box-shadow: 0 0 10px #00ff41;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .matrix-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            z-index: 1;
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 20px #00ff41;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            color: #0f0;
+            margin-bottom: 2rem;
+        }
+
+        .terminal-text {
+            display: inline-block;
+            border-right: 3px solid #00ff41;
+            animation: blink 0.7s infinite;
+        }
+
+        @keyframes blink {
+
+            0%,
+            50% {
+                border-color: #00ff41;
+            }
+
+            51%,
+            100% {
+                border-color: transparent;
+            }
+        }
+
+        @keyframes glow {
+
+            0%,
+            100% {
+                text-shadow: 0 0 20px #00ff41;
+            }
+
+            50% {
+                text-shadow: 0 0 40px #00ff41, 0 0 60px #00ff41;
+            }
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: #00ff41;
+            text-shadow: 0 0 10px #00ff41;
+        }
+
+        section h2::before {
+            content: "> ";
+            color: #0f0;
+        }
+
+        /* About Section */
+        .about-content {
+            background: rgba(0, 255, 65, 0.05);
+            padding: 2rem;
+            border: 1px solid #00ff41;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.2);
+        }
+
+        .about-content p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            color: #0f0;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .skill-card {
+            background: rgba(0, 255, 65, 0.05);
+            padding: 1.5rem;
+            border: 1px solid #00ff41;
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 30px rgba(0, 255, 65, 0.4);
+        }
+
+        .skill-card h3 {
+            color: #00ff41;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .skill-card ul {
+            list-style: none;
+        }
+
+        .skill-card li {
+            padding: 0.3rem 0;
+            color: #0f0;
+        }
+
+        .skill-card li::before {
+            content: "$ ";
+            color: #00ff41;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: rgba(0, 255, 65, 0.05);
+            padding: 2rem;
+            border: 1px solid #00ff41;
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+
+        .project-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 40px rgba(0, 255, 65, 0.5);
+        }
+
+        .project-card h3 {
+            color: #00ff41;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .project-card p {
+            color: #0f0;
+            margin-bottom: 1rem;
+        }
+
+        .project-tag {
+            display: inline-block;
+            background: rgba(0, 255, 65, 0.2);
+            padding: 0.3rem 0.8rem;
+            margin: 0.3rem;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            border: 1px solid #00ff41;
+        }
+
+        /* Contact Section */
+        .contact-content {
+            text-align: center;
+            background: rgba(0, 255, 65, 0.05);
+            padding: 3rem;
+            border: 1px solid #00ff41;
+            border-radius: 10px;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            color: #00ff41;
+            text-decoration: none;
+            padding: 1rem 2rem;
+            border: 2px solid #00ff41;
+            border-radius: 5px;
+            transition: all 0.3s;
+            font-size: 1.1rem;
+        }
+
+        .contact-link:hover {
+            background: #00ff41;
+            color: #0a0e27;
+            box-shadow: 0 0 30px #00ff41;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(10, 14, 39, 0.95);
+            border-top: 2px solid #00ff41;
+            color: #0f0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+            }
+
+            section {
+                padding: 3rem 1rem;
+            }
+        }
+
+        /* Scroll Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#home">Accueil</a></li>
+            <li><a href="#about">À propos</a></li>
+            <li><a href="#skills">Compétences</a></li>
+            <li><a href="#projects">Projets</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <canvas class="matrix-bg" id="matrix"></canvas>
+        <div class="hero-content">
+            <h1>Pamart Baptiste</h1>
+            <p class="subtitle">Expert en Cybersécurité <span class="terminal-text"></span></p>
+            <p style="color: #0f0;">Pentester | Analyste Sécurité | CTF Player</p>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="fade-in">
+        <h2>À propos</h2>
+        <div class="about-content">
+            <p> Passionné par l’informatique et les systèmes depuis plusieurs années, je me forme à l’administration
+                réseau, systèmes et infrastructures dans le cadre du BTS SIO option SISR.
+                Je maîtrise les bases de la configuration réseau, de l’administration Windows Server et Linux, ainsi que
+                la mise en place de services comme DHCP, DNS ou un serveur web.
+
+                J’utilise régulièrement des outils de diagnostic réseau, des environnements virtualisés
+                (VirtualBox/VMware) et je m’intéresse à la sécurisation de base des postes et des services.
+                Mon objectif : développer mes compétences en administration système et contribuer à la mise en place
+                d’infrastructures fiables et sécurisées.</p>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="fade-in">
+        <h2>Compétences Techniques</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <h3>Installation et administration de Windows Server / Linux</h3>
+                <ul>
+                    <li>Unbutu</li>
+                    <li>commandes de base</li>
+                    <li>services réseau</li>
+                    <li>gestion des utilisateurs</li>
+                </ul>
+            </div>
+            <div class="skill-card">
+                <h3>Systèmes & Réseaux</h3>
+                <ul>
+                    <li>Linux (Ubuntu)</li>
+                    <li>Windows Server</li>
+                    <li>TCP/IP, VPN, Firewall</li>
+
+                </ul>
+            </div>
+            <div class="skill-card">
+                <h3>réation et gestion de machines virtuelles</h3>
+                <ul>
+                    <li>Virtualbox</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="fade-in">
+        <h2>Projets & Réalisations</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <h3>Installation d’un serveur Windows Server</h3>
+                <p>avec gestion des utilisateurs et des partages</p>
+                <div>
+                    <span class="project-tag">DHCP</span>
+                    <span class="project-tag">DNS</span>
+                </div>
+            </div>
+            <div class="project-card">
+                <h3>Déploiement d’un serveur Linux</h3>
+                <p>avec configuration de services simples
+                </p>
+                <div>
+                    <span class="project-tag">Apache</span>
+                    <span class="project-tag">SSH</span>
+                </div>
+            </div>
+            <div class="project-card">
+                <h3>Machine virtuel</h3>
+                <p>Création et gestion de machines virtuelles</p>
+                <div>
+                    <span class="project-tag">ISO</span>
+                    <span class="project-tag">VM</span>
+                </div>
+            </div>
+            <div class="project-card">
+                <h3>Création d’un portfolio</h3>
+                <p>Portfolio présentant mes projets et compétences en systèmes, réseaux et développement web, accessible
+                    en ligne pour illustrer mon savoir-faire.</p>
+                <div>
+                    <span class="project-tag">HTML</span>
+                    <span class="project-tag">JavaScript</span>
+                    <span class="project-tag">CSS</span>
+                </div>
+            </div>
+            <div class="project-card">
+                <h3>Obtention de la certification ANSSI</h3>
+                <p>Obtention de la certification ANSSI pour renforcer mes compétences en sécurité des systèmes et
+                    réseaux.</p>
+                <div>
+                    <span class="project-tag">VPN</span>
+                    <span class="project-tag">Gestion des risques</span>
+                    <span class="project-tag">Réseaux sécurisés</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="fade-in">
+        <h2>Contact</h2>
+        <div class="contact-content">
+            <p style="color: #0f0; font-size: 1.2rem; margin-bottom: 2rem;">
+                Intéressé(e) par mes compétences ? N'hésitez pas à me contacter !
+            </p>
+            <div class="contact-links">
+                <a href="mailto:baptiste.pamart59@gmail.com" class="contact-link">📧 Email</a>
+                <a href="https://www.linkedin.com/in/baptiste-pamart-01a04232a" target="_blank" class="contact-link">💼
+                    LinkedIn</a>
+                <a href="https://github.com/baptistepamart" target="_blank" class="contact-link">💻 GitHub</a>
+                <a href="tel:0695125581" class="contact-link">📱 Téléphone</a>
+                <!-- Bouton pour télécharger le CV -->
+                <a href="document/Cv_Baptiste.pdf" target="_blank" class="contact-link">
+                    📄 Voir mon CV
+                </a>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2024 - Portfolio Cybersécurité | Conçu avec passion pour la sécurité</p>
+        <p style="margin-top: 0.5rem; font-size: 0.9rem;">« La sécurité n'est pas un produit, c'est un processus »</p>
+    </footer>
+
+    <script>
+        // Matrix Background Animation
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノ';
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+        const drops = Array(Math.floor(columns)).fill(1);
+
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(10, 14, 39, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#00ff41';
+            ctx.font = fontSize + 'px monospace';
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = chars[Math.floor(Math.random() * chars.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+
+        setInterval(drawMatrix, 50);
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Fade-in Animation on Scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Terminal Text Animation
+        const terminalText = document.querySelector('.terminal-text');
+        const roles = ['Pentester', 'Security Analyst', 'CTF Player', 'Red Teamer'];
+        let roleIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function typeRole() {
+            const currentRole = roles[roleIndex];
+
+            if (isDeleting) {
+                terminalText.textContent = currentRole.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                terminalText.textContent = currentRole.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let speed = isDeleting ? 50 : 100;
+
+            if (!isDeleting && charIndex === currentRole.length) {
+                speed = 2000;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                roleIndex = (roleIndex + 1) % roles.length;
+                speed = 500;
+            }
+
+            setTimeout(typeRole, speed);
+        }
+
+        typeRole();
+    </script>
+</body>
+
+</html>
