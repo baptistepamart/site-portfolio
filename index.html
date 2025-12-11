@@ -134,6 +134,12 @@
             opacity: 1;
         }
 
+        nav ul li:nth-last-child(1) a[href="#contact"] {
+            /* emphasize contact as last item */
+            border-left: 1px solid rgba(100, 255, 150, 0.08);
+            padding-left: 1.4rem;
+        }
+
         /* Hero Section */
         .hero {
             height: 100vh;
@@ -483,6 +489,93 @@
             box-shadow: 0 0 15px rgba(100, 255, 150, 0.3);
         }
 
+        /* Veille Section */
+        .veille-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-top: 2.5rem;
+            max-width: 1100px;
+            margin-left: auto;
+            margin-right: auto;
+            align-items: start;
+        }
+
+        .veille-card {
+            padding: 2rem;
+            border-radius: 14px;
+            background: linear-gradient(135deg, rgba(100, 255, 150, 0.06), rgba(0, 255, 255, 0.03));
+            border: 1px solid rgba(100, 255, 150, 0.18);
+        }
+
+        .veille-card h3 {
+            color: #c8f6df;
+            margin-bottom: 0.6rem;
+            font-size: 1.4rem;
+        }
+
+        .veille-card h4 {
+            margin-top: 1rem;
+            margin-bottom: 0.4rem;
+            color: #bcdff0;
+            font-size: 1rem;
+        }
+
+        .veille-card ul,
+        .veille-card ol {
+            margin-left: 1rem;
+            color: #dbe8ff;
+            line-height: 1.6;
+        }
+
+        .veille-meta {
+            padding: 1.6rem;
+            border-radius: 12px;
+            background: rgba(10, 14, 39, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            color: #c8d6ff;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .veille-meta svg {
+            width: 100%;
+            height: auto;
+            max-width: 220px;
+            display: block;
+            margin: 0 0 0.6rem 0;
+            filter: drop-shadow(0 6px 18px rgba(100, 255, 150, 0.12));
+            transition: transform 0.6s cubic-bezier(.2, .9, .3, 1);
+        }
+
+        .veille-meta svg:hover {
+            transform: translateY(-6px) rotate(-2deg);
+        }
+
+        .veille-meta .meta-item {
+            display: flex;
+            gap: 0.6rem;
+            align-items: center;
+        }
+
+        .veille-meta .meta-item strong {
+            color: #64ff96;
+            min-width: 90px;
+        }
+
+        .veille-cta {
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        @media (min-width: 900px) {
+            .veille-grid {
+                grid-template-columns: 2fr 1fr;
+            }
+        }
+
         /* Contact Section */
         .contact-content {
             text-align: center;
@@ -710,6 +803,7 @@
             <li><a href="#about">À propos</a></li>
             <li><a href="#skills">Compétences</a></li>
             <li><a href="#projects">Projets</a></li>
+            <li><a href="#veille">Veille</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
@@ -821,6 +915,81 @@
                     <span class="project-tag">Réseaux sécurisés</span>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Veille Technologique -->
+    <section id="veille" class="fade-in">
+        <h2>Veille Technologique</h2>
+        <div class="veille-grid">
+            <article class="veille-card project-card">
+                <h3>Mise en place d'un honeypot — T-Pot</h3>
+                <p>Cette veille porte sur le déploiement et l'analyse d'un honeypot (T-Pot) pour observer le trafic
+                    malveillant, comprendre les vecteurs d'attaque et collecter des indicateurs utiles pour renforcer la
+                    sécurité.</p>
+
+                <h4>Objectifs</h4>
+                <ul>
+                    <li>Collecter des échantillons et logs d'attaques</li>
+                    <li>Identifier les vecteurs d'intrusion courants</li>
+                    <li>Générer des règles IDS et rapports d'analyse</li>
+                </ul>
+
+                <h4>Méthodologie</h4>
+                <ol>
+                    <li>Déployer T-Pot dans une VM isolée (VirtualBox/VMware).</li>
+                    <li>Activer les modules (Cowrie, Suricata, ELK) et configurer la collecte.</li>
+                    <li>Surveiller les logs, exporter et analyser avec Python ou Kibana.</li>
+                    <li>Documenter les découvertes et proposer des règles de détection.</li>
+                </ol>
+
+                <div>
+                    <span class="project-tag">T-Pot</span>
+                    <span class="project-tag">ELK</span>
+                    <span class="project-tag">Suricata</span>
+                    <span class="project-tag">Cowrie</span>
+                </div>
+
+                <a class="veille-cta contact-link" href="https://github.com/telekom-security/tpotce" target="_blank"
+                    rel="noopener">En savoir plus sur T-Pot</a>
+            </article>
+
+            <aside class="veille-meta">
+                <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                    <defs>
+                        <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+                            <stop offset="0%" stop-color="#64ff96" stop-opacity="0.95" />
+                            <stop offset="100%" stop-color="#00e5ff" stop-opacity="0.9" />
+                        </linearGradient>
+                        <linearGradient id="g2" x1="0" x2="1" y1="0" y2="1">
+                            <stop offset="0%" stop-color="#09203f" />
+                            <stop offset="100%" stop-color="#537895" />
+                        </linearGradient>
+                    </defs>
+                    <rect width="120" height="120" rx="16" fill="url(#g2)" opacity="0.06" />
+                    <g transform="translate(12,10)">
+                        <path d="M48 4 L12 18 L12 46 C12 72 48 84 48 84 C48 84 84 72 84 46 L84 18 Z" fill="url(#g1)"
+                            opacity="0.95" />
+                        <circle cx="48" cy="40" r="6" fill="#00121a" opacity="0.18" />
+                        <g transform="translate(20,60) scale(0.45)" fill="#c8f6df" opacity="0.95">
+                            <path d="M20 6 L28 12 L20 18 L12 12 Z" />
+                        </g>
+                        <g transform="translate(8,50)" fill="#bcdff0" opacity="0.9">
+                            <circle cx="8" cy="4" r="2" />
+                            <circle cx="28" cy="4" r="2" />
+                            <circle cx="48" cy="4" r="2" />
+                            <path d="M8 6 L48 6" stroke="#bcdff0" stroke-width="1" opacity="0.4" />
+                        </g>
+                    </g>
+                </svg>
+                <div class="meta-item"><strong>Durée</strong><span>2–4 semaines (PoC)</span></div>
+                <div class="meta-item"><strong>Environ.</strong><span>VM isolée / réseau NAT</span></div>
+                <div class="meta-item"><strong>Livrables</strong><span>Rapport, règles IDS, échantillons</span></div>
+                <div class="meta-item"><strong>Compétences</strong><span>Python, ELK, Suricata, Docker</span></div>
+                <div class="meta-item"><strong>Ressource</strong><span><a
+                            href="https://github.com/telekom-security/tpotce" target="_blank" rel="noopener">T-Pot
+                            GitHub</a></span></div>
+            </aside>
         </div>
     </section>
 
